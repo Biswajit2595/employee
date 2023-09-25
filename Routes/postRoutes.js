@@ -38,6 +38,16 @@ postRouter.get("/",auth,async(req,res)=>{
     }
 })
 
+postRouter.get("/:id",auth,async(req,res)=>{
+    const {id}=req.params;
+    try {
+        const data=await EmployeeModel.findOne({_id:id})
+        res.status(200).send(data)
+    } catch (error) {
+        res.status(500).send({"error":"Internal Server Error"})
+    }
+})
+
 postRouter.get("/asc",auth,async(req,res)=>{
     const page=req.query.page || 1;
     const department=req.query.department || ""
