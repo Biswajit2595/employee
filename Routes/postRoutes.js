@@ -65,19 +65,19 @@ postRouter.patch("/update/:id",auth,async(req,res)=>{
     const {id}=req.params;
     const post=await EmployeeModel.findOne({_id:id})
     try {
-        const update=await EmployeeModel.findByIdandUpdate({_id:id},req.body)
+        const update=await EmployeeModel.findByIdAndUpdate({_id:id},req.body)
         res.status(200).send({"msg":"Employee details Updated"})
     } catch (error) {
         res.status(500).send({"error":"Internal Server Error"})
     }
 })
 
-postRouter.patch("/delete/:id",auth,async(req,res)=>{
+postRouter.delete("/delete/:id",auth,async(req,res)=>{
     const {id}=req.params;
     const post=await EmployeeModel.findOne({_id:id})
     try {
-        const update=await EmployeeModel.findByIdandDelete({_id:id})
-        res.status(200).send({"msg":"Employee details Updated"})
+        const update=await EmployeeModel.findByIdAndDelete({_id:id})
+        res.status(200).send({"msg":"Employee details Deleted"})
     } catch (error) {
         res.status(500).send({"error":"Internal Server Error"})
     }
